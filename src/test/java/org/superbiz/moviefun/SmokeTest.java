@@ -28,6 +28,10 @@ public class SmokeTest {
 
         assertThat(movieFunPage, containsString("Wedding Crashers"));
         assertThat(movieFunPage, containsString("David Dobkin"));
+
+        String movieDeleteRequest = restTemplate.getForObject(url("/moviefun?action=Remove&id=1"), String.class);
+
+
     }
 
     private String url(String path) {
