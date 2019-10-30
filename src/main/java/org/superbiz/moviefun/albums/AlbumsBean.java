@@ -30,6 +30,7 @@ public class AlbumsBean {
     @PersistenceContext(unitName="albumFactory")
     private EntityManager entityManager;
 
+    @Transactional(value="albumPlatformTransactionManager")
     public void addAlbum(Album album) {
         entityManager.persist(album);
     }

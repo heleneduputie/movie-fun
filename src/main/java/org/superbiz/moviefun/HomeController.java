@@ -54,24 +54,11 @@ public class HomeController {
     public String setup(Map<String, Object> model) {
 
         for (Movie movie : movieFixtures.load()) {
-            movieTransactionTemplate.execute(new TransactionCallback() {
-                // the code in this method executes in a transactional context
-                public Object doInTransaction(TransactionStatus status) {
-                    moviesBean.addMovie(movie);
-                    return null;
-                }
-            });
-
+            moviesBean.addMovie(movie);
         }
 
         for (Album album : albumFixtures.load()) {
-            albumTransactionTemplate.execute(new TransactionCallback() {
-                // the code in this method executes in a transactional context
-                public Object doInTransaction(TransactionStatus status) {
-                    albumsBean.addAlbum(album);
-                    return null;
-                }
-            });
+            albumsBean.addAlbum(album);
         }
 
         model.put("movies", moviesBean.getMovies());

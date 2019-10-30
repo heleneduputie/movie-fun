@@ -36,21 +36,22 @@ public class MoviesBean {
         return entityManager.find(Movie.class, id);
     }
 
+    @Transactional(value="moviePlatformTransactionManager")
     public void addMovie(Movie movie) {
         entityManager.persist(movie);
     }
 
-    @Transactional
+    @Transactional(value="moviePlatformTransactionManager")
     public void editMovie(Movie movie) {
         entityManager.merge(movie);
     }
 
-    @Transactional
+    @Transactional(value="moviePlatformTransactionManager")
     public void deleteMovie(Movie movie) {
         entityManager.remove(movie);
     }
 
-    @Transactional
+    @Transactional(value="moviePlatformTransactionManager")
     public void deleteMovieId(long id) {
         Movie movie = entityManager.find(Movie.class, id);
         deleteMovie(movie);
